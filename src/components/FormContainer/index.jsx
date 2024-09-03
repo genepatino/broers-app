@@ -1,22 +1,38 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Swal from 'sweetalert2'
 import { PASSWORD, USERNAME } from '../../utils/constants';
+import { ReCaptcha } from '../ReCaptcha';
+import { GlobalState } from '../../context';
 
 
 const FormContainer = () => {
+
+  const {captcha} = useContext(GlobalState)
+
   const navigate = useNavigate()
+
   const onFinish = (values) => {
+
     const {username, password} = values
-  if(username === USERNAME &&  password === PASSWORD){
-    navigate("/marvelcharacters", { replace: true })
-  }else{
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Verifica nombre de usuario o contraseña",
-    });
-  }
+    if(username === USERNAME &&  password === PASSWORD){
+      if(captcha){
+        navigate("/marvelcharacters", { replace: true })
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Confirma que no eres un robot",
+        });
+      }
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Verifica nombre de usuario o contraseña",
+      });
+    }
     
   };
   const onFinishFailed = (errorInfo) => {
@@ -76,17 +92,27 @@ const FormContainer = () => {
         name="remember"
         valuePropName="checked"
         wrapperCol={{
-          offset: 8,
+          offset: 4,
           span: 16,
         }}
       >
         <Checkbox
         >Recordar cuenta</Checkbox>
       </Form.Item>
+      
+      <Form.Item
+        wrapperCol={{
+          offset: 4,
+          span: 16,
+        }}
+      >
+        <ReCaptcha/>
+        
+      </Form.Item>
 
       <Form.Item
         wrapperCol={{
-          offset: 8,
+          offset: 4,
           span: 16,
         }}
       >

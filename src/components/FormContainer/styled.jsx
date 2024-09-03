@@ -31,7 +31,7 @@ export const SectionLogin = styled.section`
     }
     .btn-submit{
       background-color: #891212e3;
-      padding: 16px 32px;
+      padding: 18px 32px;
     }
 
     .btn-submit:hover{
