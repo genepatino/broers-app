@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Swal from 'sweetalert2'
+import { PASSWORD, USERNAME } from '../../utils/constants';
 
 
 const FormContainer = () => {
   const navigate = useNavigate()
   const onFinish = (values) => {
     const {username, password} = values
-  if(username === "admin@admin.com" &&  password === "Admin"){
+  if(username === USERNAME &&  password === PASSWORD){
     navigate("/marvelcharacters", { replace: true })
   }else{
     Swal.fire({
@@ -27,7 +28,7 @@ const FormContainer = () => {
     <Form
       name="basic"
       labelCol={{
-        span: 8,
+        span: 6,
       }}
       className='login-form'
       wrapperCol={{
@@ -79,7 +80,8 @@ const FormContainer = () => {
           span: 16,
         }}
       >
-        <Checkbox>Recordar cuenta</Checkbox>
+        <Checkbox
+        >Recordar cuenta</Checkbox>
       </Form.Item>
 
       <Form.Item
@@ -88,7 +90,7 @@ const FormContainer = () => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" className='btn-submit'>
           Ingresar
         </Button>
       </Form.Item>

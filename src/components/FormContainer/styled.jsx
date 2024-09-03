@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const SectionLogin = styled.section`
-    background-color: #804444ed;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 60px;
+    padding-top: 70px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
 
     h1{
       font-size: 3rem;
-      margin: 40px 0 14px 0;
+      margin-bottom: 14px;
+      letter-spacing: 0.22rem;
+      font-family: system-ui;
     }
     p{
       font-size: 1.4rem;
@@ -23,5 +28,13 @@ export const SectionLogin = styled.section`
     }
     .label-item{
       text-align: start;
+    }
+    .btn-submit{
+      background-color: #891212e3;
+      padding: 16px 32px;
+    }
+
+    .btn-submit:hover{
+      background-color: #891212e3 !important
     }
 `

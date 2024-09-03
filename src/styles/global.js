@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body{
-    background-color: white;
+    background-color: #632929;
     max-width: 1400px;
     min-width: 800px;
     margin: 0 auto;

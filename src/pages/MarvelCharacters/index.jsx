@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import md5 from 'md5';
 import { PRIVATE_API_KEY, PUBLIC_API_KEY, API_URL } from "../../utils/constants";
+import { CharactersTable } from "../../components/CharactersTable";
 
 function MarvelCharacters() {
   const [characters, setCharacters] = useState(null)
@@ -19,16 +20,15 @@ function MarvelCharacters() {
         }
       });
       const data = await response.json();
-      console.log(data.data.results);
+      setCharacters(data.data.results);
     } catch (error) {
       console.error('Error:', error);
     }
     };
     getAllCharacters();
   }, []);
-
   return (
-    <div>Hola personaje d e marvel</div>
+    <CharactersTable data={characters}/>
   )
 }
 
