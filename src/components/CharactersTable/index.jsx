@@ -43,16 +43,6 @@ function CharactersTable() {
                         {item.name}
                       </Link>
                     </td>
-
-                    {/* <td>
-                      <p
-                        onClick={() => handleClick(item.id)}
-                        target="_blank"
-                        className="p-link"
-                      >
-                        {item.name}
-                      </p>
-                    </td> */}
                   </tr>
                 );
               })}

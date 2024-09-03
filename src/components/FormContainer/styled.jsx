@@ -29,8 +29,8 @@ export const SectionLogin = styled.section`
   }
 
   .btn-submit {
-    width: 100%;
     background-color: #891212e3;
+    width: 100%;
     padding: 18px 32px;
   }
 

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input } from "antd";
+
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input, Flex } from "antd";
 import Swal from "sweetalert2";
 import { PASSWORD, USERNAME } from "../../utils/constants";
 import { ReCaptcha } from "../ReCaptcha";
@@ -12,8 +14,8 @@ const FormContainer = () => {
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    const { username, password } = values;
-    if (username === USERNAME && password === PASSWORD) {
+    const { Usuario, Contraseña } = values;
+    if (Usuario === USERNAME && Contraseña === PASSWORD) {
       if (captcha) {
         navigate("/marvelcharacters", { replace: true });
       } else {
@@ -38,31 +40,14 @@ const FormContainer = () => {
   return (
     <Form
       name="basic"
-      labelCol={{
-        span: 5,
-      }}
-      className="login-form"
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-      }}
-      initialValues={{
-        remember: true,
-      }}
+      initialValues={{ remember: true }}
+      style={{ maxWidth: 360, marginTop: 60 }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
-      layout="vertical"
     >
       <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-        label="Usuario"
-        name="username"
+        name="Usuario"
         rules={[
           {
             required: true,
@@ -70,16 +55,10 @@ const FormContainer = () => {
           },
         ]}
       >
-        <Input />
+        <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
-
       <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-        label="Contraseña"
-        name="password"
+        name="Contraseña"
         rules={[
           {
             required: true,
@@ -87,36 +66,24 @@ const FormContainer = () => {
           },
         ]}
       >
-        <Input.Password />
+        <Input
+          prefix={<LockOutlined />}
+          type="password"
+          placeholder="Password"
+        />
       </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-        <Checkbox>Recordar cuenta</Checkbox>
+      <Form.Item>
+        <Flex justify="space-between" align="center">
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Recordar cuenta</Checkbox>
+          </Form.Item>
+        </Flex>
       </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
+      <Form.Item>
         <ReCaptcha />
       </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit" className="btn-submit">
+      <Form.Item>
+        <Button block type="primary" htmlType="submit" className="btn-submit">
           Ingresar
         </Button>
       </Form.Item>
