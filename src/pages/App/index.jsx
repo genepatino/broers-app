@@ -1,13 +1,12 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { Login } from "../../components/Login";
+import { Login } from "../Login";
+import { MarvelCharacters } from "../MarvelCharacters";
+import { GlobalStyle } from "../../styles/global";
 
 const Routes = () => {
   const routes = useRoutes([
     { path: "/", element: <Login /> },
-    /* { path: "/:category", element: <Home /> },
-    { path: "/product/:id", element: <ProductDetails /> },
-    { path: "/order-summary", element: <OrderSummary /> },
-    { path: "/*", element: <NotFound /> }, */
+    { path: "/marvelcharacters", element: <MarvelCharacters /> }
   ]);
   return routes;
 };
@@ -15,6 +14,7 @@ const Routes = () => {
 function App() {
   return (
     <BrowserRouter>
+    <GlobalStyle/>
       <Routes />
     </BrowserRouter>
   );
