@@ -56,7 +56,7 @@ const FormContainer = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="Usuario"
         name="username"
         rules={[
           {
@@ -70,7 +70,7 @@ const FormContainer = () => {
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="Contraseña"
         name="password"
         rules={[
           {
