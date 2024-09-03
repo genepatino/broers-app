@@ -51,12 +51,12 @@ export const GlobalStyle = createGlobalStyle`
 
   .table-container{
     width: 80%;
-    max-height: 600px;
+    max-height: 640px;
     overflow-y: auto;
   }
 
   table {
-  width: 80%;
+  width: 100%;
   background-color: white;
   border-collapse: collapse;
   box-shadow: -1px 1px 5px 4px #00000069;
@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
 
   th, td {
     border: 8px solid #ddd;
-    padding: 8px;
+    padding: 16px;
     font-size: 1.4rem;
     text-align: center;
   }
