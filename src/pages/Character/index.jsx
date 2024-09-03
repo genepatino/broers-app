@@ -14,10 +14,10 @@ import { CharacterDetails } from "../../components/CharacterDetails";
 function Character() {
   const { id } = useParams();
 
-  const { character, setCharacter } = useContext(GlobalState);
+  const { setCharacter } = useContext(GlobalState);
 
   useEffect(() => {
-    const getAllCharacters = async () => {
+    const getCharacter = async () => {
       const url = `${API_URL}/v1/public/characters/${id}?apikey=${PUBLIC_API_KEY}&ts=${timestamp}&hash=${md5(
         hash
       )}`;
@@ -30,14 +30,19 @@ function Character() {
           },
         });
         const data = await response.json();
-        setCharacter(data.data.results);
-        console.log(character);
+        console.log("data.data.results> ", data.data.results);
+
+        setCharacter(data.data.results[0]);
       } catch (error) {
         console.error("Error:", error);
       }
     };
-    getAllCharacters();
-  }, [id]);
+    getCharacter();
+
+    return () => {
+      setCharacter(null);
+    };
+  }, [id, setCharacter]);
 
   return (
     <LayoutContainer>

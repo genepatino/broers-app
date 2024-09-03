@@ -1,34 +1,41 @@
 import { useContext } from "react";
 import { CardContainer } from "./styled";
 import { GlobalState } from "../../context";
+import { Loader } from "../Loader";
+import { pathOr, hasPath } from "ramda";
 
 function CharacterDetails() {
   const { character } = useContext(GlobalState);
 
-  console.log(character);
-
   return (
     <>
-      {character.map((item) => {
-        const imageUrl = `${item.thumbnail.path}.${item.thumbnail.extension}`;
-        return (
-          <CardContainer key={item.id}>
-            <figure className="figure_container">
-              <img src={imageUrl} alt={item.name} />
-            </figure>
-            <section className="description-container">
-              <p className="name">{item.name}</p>
-              {item.description !== "" ? (
-                <p className="description">{item.description}</p>
-              ) : (
-                <p className="description">
-                  ¡Lo sentimos, no tenemos información sobre {item.name}!
-                </p>
-              )}
-            </section>
-          </CardContainer>
-        );
-      })}
+      {hasPath(["name"], character) ? (
+        <CardContainer>
+          <figure className="figure_container">
+            <img
+              src={`${pathOr("", ["thumbnail", "path"], character)}.${pathOr(
+                "",
+                ["thumbnail", "extension"],
+                character
+              )}`}
+              alt={pathOr("", ["name"], character)}
+            />
+          </figure>
+          <section className="description-container">
+            <p className="name">{pathOr("", ["name"], character)}</p>
+
+            {character.description !== "" ? (
+              <p className="description">{character.description}</p>
+            ) : (
+              <p className="description">
+                ¡Lo sentimos, no tenemos información sobre {character.name}!
+              </p>
+            )}
+          </section>
+        </CardContainer>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

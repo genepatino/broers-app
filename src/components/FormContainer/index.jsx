@@ -39,7 +39,7 @@ const FormContainer = () => {
     <Form
       name="basic"
       labelCol={{
-        span: 6,
+        span: 5,
       }}
       className="login-form"
       wrapperCol={{
@@ -54,8 +54,13 @@ const FormContainer = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      layout="vertical"
     >
       <Form.Item
+        wrapperCol={{
+          offset: 4,
+          span: 16,
+        }}
         label="Usuario"
         name="username"
         rules={[
@@ -64,12 +69,15 @@ const FormContainer = () => {
             message: "Por favor ingrese su nombre de usuario!",
           },
         ]}
-        className="label-item"
       >
         <Input />
       </Form.Item>
 
       <Form.Item
+        wrapperCol={{
+          offset: 4,
+          span: 16,
+        }}
         label="Contraseña"
         name="password"
         rules={[

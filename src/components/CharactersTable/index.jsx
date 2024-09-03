@@ -1,16 +1,11 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GlobalState } from "../../context";
 import { LayoutContainer } from "../../pages/Login/styled";
 import { Loader } from "../Loader";
 
 function CharactersTable() {
   const { characters } = useContext(GlobalState);
-  const navigate = useNavigate();
-
-  const handleClick = (item) => {
-    navigate(`/character/${item}`);
-  };
 
   return (
     <LayoutContainer>
@@ -20,7 +15,7 @@ function CharactersTable() {
             <thead>
               <tr>
                 <th>Personajes Marvel</th>
-                <th>Name</th>
+                <th>Nombre</th>
               </tr>
             </thead>
             <tbody>
@@ -39,8 +34,17 @@ function CharactersTable() {
                         }}
                       />
                     </td>
-
                     <td>
+                      <Link
+                        to={`/character/${item.id}`}
+                        target="_blank"
+                        className="p-link"
+                      >
+                        {item.name}
+                      </Link>
+                    </td>
+
+                    {/* <td>
                       <p
                         onClick={() => handleClick(item.id)}
                         target="_blank"
@@ -48,7 +52,7 @@ function CharactersTable() {
                       >
                         {item.name}
                       </p>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}

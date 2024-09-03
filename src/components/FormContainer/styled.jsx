@@ -27,10 +27,9 @@ export const SectionLogin = styled.section`
     flex-direction: column;
     gap: 20px;
   }
-  .label-item {
-    text-align: start;
-  }
+
   .btn-submit {
+    width: 100%;
     background-color: #891212e3;
     padding: 18px 32px;
   }

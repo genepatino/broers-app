@@ -7,7 +7,7 @@ The hooks implemented during the application were "useState, useContext, useEffe
 
 Styled-components were implemented for the application styles.
 
-and external libraries such as: And Design, SweetAlert, reCAPTCHA to meet the requirements.
+and external libraries such as: Ramda, And Design, SweetAlert, reCAPTCHA to meet the requirements.
 
 Broer App starts with a LogIn that has 2 filters to access the following view (previously established username and password and reCaptcha authentication). If any of these are not met, the user will not be able to access the following view (Character Table).
 

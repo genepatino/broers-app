@@ -10,7 +10,7 @@ import md5 from "md5";
 import { GlobalState } from "../../context";
 
 function MarvelCharacters() {
-  const { characters, setCharacters } = useContext(GlobalState);
+  const { setCharacters } = useContext(GlobalState);
 
   useEffect(() => {
     const getAllCharacters = async () => {
@@ -27,8 +27,6 @@ function MarvelCharacters() {
         });
         const data = await response.json();
         setCharacters(data.data.results);
-
-        console.log(characters);
       } catch (error) {
         console.error("Error:", error);
       }
