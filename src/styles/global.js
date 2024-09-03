@@ -8,9 +8,8 @@ export const colors = {
   salmon: "#dfc1aa",
   ligthred: "#b03a3a",
   gray: "#b9afaf",
-  blue: "#3483fa"
+  blue: "#3483fa",
 };
-
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -74,37 +73,27 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #f4f4f4;
   }
 
-  .spinner {
-   width: 56px;
-   height: 56px;
-   display: grid;
-   border-radius: 50%;
-   -webkit-mask: radial-gradient(farthest-side,#0000 40%,#474bff 41%);
-   background: linear-gradient(0deg ,rgba(71,75,255,0.5) 50%,rgba(71,75,255,1) 0) center/4.5px 100%,
-  linear-gradient(90deg,rgba(71,75,255,0.25) 50%,rgba(71,75,255,0.75) 0) center/100% 4.5px;
-   background-repeat: no-repeat;
-   animation: spinner-d3o0rx 1s infinite steps(12);
+.loader {
+  display: inline-flex;
+  gap: 10px;
 }
-
-.spinner::before,
-.spinner::after {
-   content: "";
-   grid-area: 1/1;
-   border-radius: 50%;
-   background: inherit;
-   opacity: 0.915;
-   transform: rotate(30deg);
+.loader:before,
+.loader:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    linear-gradient(#222 0 0) top/100% 40% no-repeat,
+    radial-gradient(farthest-side,#000 95%,#0000) 50%/8px 8px no-repeat
+    #fff;
+  animation: l7 1.5s infinite alternate ease-in;
 }
-
-.spinner::after {
-   opacity: 0.83;
-   transform: rotate(60deg);
-}
-
-@keyframes spinner-d3o0rx {
-   100% {
-      transform: rotate(1turn);
-   }
+@keyframes l7 {
+  0%,
+  70% {background-size:100% 40%,8px 8px}
+  85% {background-size:100% 120%,8px 8px}
+  100% {background-size:100% 40%,8px 8px}
 }
 
 .p-link:hover{

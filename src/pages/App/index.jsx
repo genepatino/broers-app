@@ -8,7 +8,7 @@ const Routes = () => {
   const routes = useRoutes([
     { path: "/", element: <Login /> },
     { path: "/marvelcharacters", element: <MarvelCharacters /> },
-    { path: "/character/:id", element: <Character /> }
+    { path: "/character/:id", element: <Character /> },
   ]);
   return routes;
 };
@@ -16,11 +16,10 @@ const Routes = () => {
 function App() {
   return (
     <BrowserRouter>
-    <GlobalStyle/>
+      <GlobalStyle />
       <Routes />
     </BrowserRouter>
   );
 }
-
 
 export default App;

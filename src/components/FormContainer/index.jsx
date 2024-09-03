@@ -1,52 +1,47 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, Checkbox, Form, Input } from 'antd';
-import Swal from 'sweetalert2'
-import { PASSWORD, USERNAME } from '../../utils/constants';
-import { ReCaptcha } from '../ReCaptcha';
-import { GlobalState } from '../../context';
-
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Checkbox, Form, Input } from "antd";
+import Swal from "sweetalert2";
+import { PASSWORD, USERNAME } from "../../utils/constants";
+import { ReCaptcha } from "../ReCaptcha";
+import { GlobalState } from "../../context";
 
 const FormContainer = () => {
+  const { captcha } = useContext(GlobalState);
 
-  const {captcha} = useContext(GlobalState)
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
-
-    const {username, password} = values
-    if(username === USERNAME &&  password === PASSWORD){
-      if(captcha){
-        navigate("/marvelcharacters", { replace: true })
-      }else{
+    const { username, password } = values;
+    if (username === USERNAME && password === PASSWORD) {
+      if (captcha) {
+        navigate("/marvelcharacters", { replace: true });
+      } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Confirma que no eres un robot",
         });
       }
-    }else{
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Verifica nombre de usuario o contraseña",
       });
     }
-    
   };
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log("Failed:", errorInfo);
   };
-  
-  
-  return(
+
+  return (
     <Form
       name="basic"
       labelCol={{
         span: 6,
       }}
-      className='login-form'
+      className="login-form"
       wrapperCol={{
         span: 16,
       }}
@@ -66,13 +61,12 @@ const FormContainer = () => {
         rules={[
           {
             required: true,
-            message: 'Por favor ingrese su nombre de usuario!',
+            message: "Por favor ingrese su nombre de usuario!",
           },
         ]}
-        className='label-item'
-        
+        className="label-item"
       >
-        <Input/>
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -81,11 +75,11 @@ const FormContainer = () => {
         rules={[
           {
             required: true,
-            message: 'Por favor ingrese su contraseña!',
+            message: "Por favor ingrese su contraseña!",
           },
         ]}
       >
-        <Input.Password/>
+        <Input.Password />
       </Form.Item>
 
       <Form.Item
@@ -96,18 +90,7 @@ const FormContainer = () => {
           span: 16,
         }}
       >
-        <Checkbox
-        >Recordar cuenta</Checkbox>
-      </Form.Item>
-      
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-        <ReCaptcha/>
-        
+        <Checkbox>Recordar cuenta</Checkbox>
       </Form.Item>
 
       <Form.Item
@@ -116,11 +99,20 @@ const FormContainer = () => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit" className='btn-submit'>
+        <ReCaptcha />
+      </Form.Item>
+
+      <Form.Item
+        wrapperCol={{
+          offset: 4,
+          span: 16,
+        }}
+      >
+        <Button type="primary" htmlType="submit" className="btn-submit">
           Ingresar
         </Button>
       </Form.Item>
     </Form>
-  )
+  );
 };
-export {FormContainer};
+export { FormContainer };
