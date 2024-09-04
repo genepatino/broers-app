@@ -35,11 +35,7 @@ function CharactersTable() {
                       />
                     </td>
                     <td>
-                      <Link
-                        to={`/character/${item.id}`}
-                        target="_blank"
-                        className="p-link"
-                      >
+                      <Link to={`/character/${item.id}`} className="p-link">
                         {item.name}
                       </Link>
                     </td>
